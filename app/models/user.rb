@@ -8,7 +8,9 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 }, #存在性、100文字以内
                     format: { with: VALID_EMAIL_REGEX }, #正規表現によるメールアドレスのフォーマット
                     uniqueness: true #一意の確認
-  
+  validates :department, length: { in: 2..30}, allow_blank: true
+  validates :basic_time, presence: true
+  validates :work_time, presence: true
   has_secure_password #パスワード用のコード
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true #存在性、最小6文字
   
